@@ -15,10 +15,11 @@ const HomePage = () => {
             : 'md:grid-cols-2'
         }`}
       >
-        {/* ✅ Pass props correctly */}
+    
         <Sidebar selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
         <ChatContainer selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
-        <RightSidebar />
+        
+        <RightSidebar  selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
@@ -6,7 +6,7 @@ import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
   return (
-    <div className="bg-[url('./src/assets/chat-app-assets/bgImage.svg')] bg-contain">
+    <div className="bg-[url('./src/assets/assets/bgImage.svg')] bg-contain">
       <Routes>
         <Route path='/' element={<HomePage />}/>
         <Route path='/login' element={<LoginPage />}/>
