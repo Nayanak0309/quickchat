@@ -30,30 +30,72 @@ const ChatContainer = ({selectedUser, setSelectedUser}) => {
 
       {/*------chat area-------*/}
       <div className="flex flex-col h-[calc(100%-120px)] overflow-y-scroll p-3 pb-6">
-        {messagesDummyData.map((msg, index)=>(
-          <div key={index} className={`flex items-end gap-2 justify-end ${msg.senderId !== '680f5e4f10f3cd28382ecf9' && 'flex-row-reverse'}`}>
-            
-            {msg.image ? (
-              <img src={msg.image} alt="" className="max-w-[230px] border border-gray-700 rounded-lg overflow-hidden mb-8"/>
-            ):(
-              <p className={`p-2 max-w-[200px] md:text-sm font-light rounded-lg mb-8 break-all bg-violet-500/30 text-white ${msg.senderId === '680f50e4f10f3cd28382ecf9' ? 'rounded-br-none' : 'rounded-bl-none'}`}>{msg.text}</p>
+        {messagesDummyData.map((msg, index) => {
+  // 👇 Define this first before using it
+  const isSender = msg.senderId === "680f50e4f10f3cd28382ecf9"; // your ID
 
-            
-            )}
-            <div className="text-center text-xs">
-              <img src={msg.senderId === '680f50e4f3cd28382ecf9' ? assets.avatar_icon : assets.profile_martin} alt="" className='w-7 rounded-full'/>
-              <p className="text-gray-500">{formatMessageTime(msg.createdAt)}</p>
-              
-            {!msg.senderId === '680f50e4f10f3cd28382ecf9' && msg.receivedAt && (
-    <div className="text-left text-xs">
-      <p className="text-gray-400">{formatMessageTime(msg.receivedAt)}</p>
+  return (
+    <div key={index} className="mb-3">
+      <div
+        className={`flex items-end gap-2 ${
+          isSender ? "justify-end" : "justify-start"
+        }`}
+      >
+        {/* Receiver profile */}
+        {!isSender && (
+          <img
+            src={selectedUser?.profilePic || assets.profile_martin}
+            alt="receiver"
+            className="w-8 h-8 rounded-full object-cover"
+          />
+        )}
+
+        {/* Message bubble */}
+        {msg.image ? (
+          <img src={msg.image} alt="" className="max-w-[230px] border border-gray-700 rounded-lg overflow-hidden mb-8"/>
+        ):(
+
+
+        
+      
+        <div
+          className={`max-w-[230px] md:max-w-[320px] p-2 rounded-2xl wrap-break-word ${
+            isSender
+              ? "bg-[#8185B2]/30 rounded-br-none text-white"
+              : "bg-gray-700/40 rounded-bl-none text-white"
+          }`}
+        >
+          {msg.text}
+        </div>
+        )}
+
+        {/* Sender profile */}
+        {isSender && (
+          <img
+            src={assets.avatar_icon}
+            alt="You"
+            className="w-8 h-8 rounded-full object-cover"
+          />
+        )}
+      </div>
+
+      {/* Message time */}
+      <p
+        className={`text-xs text-gray-400 mt-1 ${
+          isSender ? "text-right pr-10" : "text-left pl-10"
+        }`}
+      >
+        {formatMessageTime(msg.createdAt)}
+      </p>
     </div>
-              )}
-              </div>
-              </div>
+  );
+})}
+
+    
+            
           
           
-        ))}
+        
         <div ref={scrollEnd}>
 
         </div>
@@ -74,7 +116,7 @@ const ChatContainer = ({selectedUser, setSelectedUser}) => {
             </label>
 
         </div>
-        <img src={assets.send_button} alt="" />
+        <img src={assets.send_button} alt=""  className="w-7 cursor-pointer"/>
       </div>
     </div >
   ) : (
