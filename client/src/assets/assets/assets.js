@@ -88,6 +88,8 @@ export const messagesDummyData = [
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "seen": true,
         "createdAt": "2025-04-28T10:23:27.844Z",
+        "receivedAt": "2025-10-26T22:45:05Z",
+
     },
     {
         "_id": "680f5726f10f3cd28382f0b1",
@@ -96,6 +98,7 @@ export const messagesDummyData = [
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "seen": true,
         "createdAt": "2025-04-28T10:23:34.520Z",
+        "receivedAt": "2025-10-26T22:45:05Z",
     },
     {
         "_id": "680f5729f10f3cd28382f0b6",
@@ -104,6 +107,7 @@ export const messagesDummyData = [
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "seen": true,
         "createdAt": "2025-04-28T10:23:37.301Z",
+        "receivedAt": "2025-10-26T22:45:05Z", 
     },
     {
         "_id": "680f572cf10f3cd28382f0bb",
@@ -112,6 +116,7 @@ export const messagesDummyData = [
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "seen": true,
         "createdAt": "2025-04-28T10:23:40.334Z",
+        "receivedAt": "2025-10-26T22:45:05Z",
     },
     {
         "_id": "680f573cf10f3cd28382f0c0",
@@ -120,6 +125,7 @@ export const messagesDummyData = [
         "image": img1,
         "seen": true,
         "createdAt": "2025-04-28T10:23:56.265Z",
+        "receivedAt": "2025-10-26T22:45:05Z",
     },
     {
         "_id": "680f5745f10f3cd28382f0c5",
@@ -128,6 +134,7 @@ export const messagesDummyData = [
         "image": img2,
         "seen": true,
         "createdAt": "2025-04-28T10:24:05.164Z",
+        "receivedAt": "2025-10-26T22:45:05Z",
     },
     {
         "_id": "680f5748f10f3cd28382f0ca",
@@ -136,5 +143,6 @@ export const messagesDummyData = [
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "seen": true,
         "createdAt": "2025-04-28T10:24:08.523Z",
+        "receivedAt": "2025-10-26T22:45:05Z",
     }
 ]
