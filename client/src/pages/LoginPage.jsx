@@ -8,16 +8,26 @@ const LoginPage = () => {
   const [password, setPassword] = useState("")
   const [bio, setBio] = useState("")
   const [isDtaSubmitted, setIsDataSubmitted] = useState(false);
+
+  const onSubmitHandler = (event)=>{
+    event.preventDefault();
+    if(currState === 'Sign up' && !isDtaSubmitted){
+      setIsDataSubmitted(true)
+      return;
+    }
+  
+  }
   return (
     <div className='min-h-screen  bg-center flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl'>
       {/* ------- left-----*/}
       <img src={assets.logo_big} alt="" className='w-45'/>
 
       {/*------right-----*/}
-      <form className='border-2 bg-white/8 text-white border-gray-500 p-6 flex flex-col gap-6 rounded-lg shadow-lg'>
+      <form onSubmit={onSubmitHandler} className='border-2 bg-white/8 text-white border-gray-500 p-6 flex flex-col gap-6 rounded-lg shadow-lg'>
       <h2 className='font-medium text-2xl flex justify-between items-center'>
         {currState}
-        <img src={assets.arrow_icon} alt="" className='w-5 cursor-pointer'/>
+        {isDtaSubmitted && <img  onClick={()=> setIsDataSubmitted(false)} src={assets.arrow_icon} alt="" className='w-5 cursor-pointer'/>
+}
       </h2>
       {currState === "Sign up" && !isDtaSubmitted &&  (
         <input onChange={(e)=>setFullName(e.target.value)} value={fullName}
@@ -53,8 +63,21 @@ const LoginPage = () => {
         <p> Agree to the terms of use & privacy policy.</p>
         </div>
 
+        <div className='flex flex-col gap-2'>
+          {currState === "Sign up" ? (
+            <p className='text-sm text-gray-600'>Already have an account?
+            <span  onClick={()=>{setCurrState("Login"); setIsDataSubmitted(false)}} className='font-medium text-violet-500 cursor-pointer'>Login Here</span></p>
+          ):(
+            <p className='text-sm text-gray-600'> create an Account <span onClick={()=> setCurrState("Sign up")}
+            className='font-medium text-violet-500 cursor-pointer'>Click Here</span></p>
+          
+          )}
+        </div>
+
       </form>
     </div>
+
+
   )
 }
 
