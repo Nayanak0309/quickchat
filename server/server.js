@@ -1,18 +1,22 @@
 import express from "express";
 import cors from "cors";
 import http from "http";
-import dotenv from "dotenv";
+import "dotenv/config";
 import { connectDB } from "./lib/db.js";
+import userRouter from "./routes/userRoutes.js";
 
-dotenv.config(); // Make sure this runs BEFORE connectDB()
+
 
 const app = express();
 const server = http.createServer(app);
 
+//middleware setup
 app.use(express.json({ limit: "4mb" }));
 app.use(cors());
 
-app.get("/api/status", (req, res) => res.send("Server is live"));
+
+app.use("/api/status", (req, res) => res.send("Server is live"));
+app.use("/api/auth", userRouter);
 
 await connectDB();
 
