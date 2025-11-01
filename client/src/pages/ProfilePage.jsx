@@ -28,7 +28,7 @@ const ProfilePage = () => {
          <input onChange={(e)=>setName(e.target.value)} value={name}
           type='text' required placeholder='Your name' className='p-2 border boder-gray-500 rounded-md 
           focus:outline-none focus:ring-2 focus:ring-violet-500'/>
-          <textarea onChange={(e)=>setBio(e.target.value)} value={bio} placeholder='write profile bio' required 
+          <textarea onChange={(e)=>setBio(e.tar6tget.value)} value={bio} placeholder='write profile bio' required 
           className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500' rows={4}></textarea>
           <button type='submit' className='bg-linear-to-r from-purple-400 to-violet-600 text-white p-2 rounded-full text-lg cursor-pointer'>Save</button>
         </form>
