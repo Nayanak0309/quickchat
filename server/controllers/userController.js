@@ -1,25 +1,22 @@
 import { generateToken } from "../lib/utils.js";
 import User  from "../models/User.js";
-
-
 import bcrypt from "bcryptjs";
-
 import cloudinary from "../lib/cloudinary.js"
 
 //Singup a new user
 
-export const signup = async ()=>{
-    const {fullName, email, password, bio } = requestAnimationFrame.body;
+export const signup = async (req, res)=>{
+    const {fullName, email, password, bio } =req.body;
 
     try {
         if (!fullName || !email || !password || !bio){
-            return resizeBy.json({success: false, message: "Missing Details"})
+            return res.json({success: false, message: "Missing Details"})
 
         }
         const user =  await User.findOne({email});
 
         if(user){
-            return resizeBy.json({success: false, message: "Account already exists"})
+            return res.json({success: false, message: "Account already exists"})
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -46,7 +43,7 @@ export const signup = async ()=>{
             const { email, password } = req.body;
             const userData=await User.findOne({email})
 
-            const isPasswordCorrect = await bcrypt.compare(process, userData.password);
+            const isPasswordCorrect = await bcrypt.compare(password, userData.password);
 
             if (!isPasswordCorrect){
                 return res.json({success: false, message:"Invalid credentials"});
@@ -77,7 +74,7 @@ export const updateProfile = async (req, res)=>{
             await User.findByIdAndUpdate(userId, {bio, fullName}, {new:true});
         }else {
             const upload = await cloudinary.uploader.upload(profilePic);
-            updatedUser = await User.findByIdAndUpdate(userId, {profilePic:upload.secure_url, bio, fullName},{new:true})
+            updatedUser = await User.findByIdAndUpdate(userId, {profilePic:upload.secure_url, bio, fullName},{new:true});
         }
         res.json({success:true, user:updatedUser})
     } catch (error) {
