@@ -1,8 +1,13 @@
 
+import { AuthContext } from "../../context/AuthContext";
 import assets, { userDummyData } from "../assets/assets/assets";
 import {useNavigate} from 'react-router-dom'
+import { useContext } from "react";
+import { ChatContext } from "../../context/ChatContext";
 
-const Sidebar = ({selectedUser, setSelectedUser}) => {
+const Sidebar = () => {
+  const {getUsers, users, selectedUser, setSelectedUser, unseenMessages, setUnseenMessages} = useContext(ChatContext);
+  const {logout, onlineUsers} = useContext(AuthContext)
   const navigate = useNavigate();
 
   return (
@@ -17,7 +22,7 @@ const Sidebar = ({selectedUser, setSelectedUser}) => {
             <img src={assets.menu_icon} alt="Menu" className='max-h-5 cursor-pointer'/>
 
           <div className='absolute top-full right-0 z-w-32 p-5 rounded-md bg-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block'>
-            <p onClick={()=>navigate('/profile')} className='cursor-pointertext-sm'>Edit Profile</p>
+            <p onClick={()=>navigate('/profile')} className='cursor-pointer text-sm'>Edit Profile</p>
             <hr className="my-2 border-t border-gray-500"/>
             <p className='cursor-pointer text-sm'>Logout</p>
           </div>
