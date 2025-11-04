@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import assets from '../assets/assets/assets'
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../../context/AuthContext.jsx'
 
 const LoginPage = () => {
   const [currState, setCurrState] = useState("Sign up")
@@ -21,7 +21,7 @@ const LoginPage = () => {
       return;
     }
     
-    login(currState=== "sign up" ? "signup" : "login", {fullName, email, password, bio})
+    login(currState=== "Sign up" ? "Signup" : "login", {fullName, email, password, bio})
   
   }
   return (
