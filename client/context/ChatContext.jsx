@@ -84,7 +84,7 @@ export const ChatProvider = ({children})=>{
 
     }
     return (
-        <ChatContext.Provider value={value}>
+        <ChatContext.Provider value={{value}}>
             {children}
         </ChatContext.Provider>
     )
