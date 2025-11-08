@@ -1,5 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+
 
 
 
@@ -12,12 +15,12 @@ export const ChatProvider = ({children})=>{
     const [selectedUser, setSelectedUser] = useState(null);
     const [unseenMessages, setUnseenMessages] = useState({});
     
-    const {socket, axois} = useContext(AuthContext);
+    const {socket, axios} = useContext(AuthContext);
 
     //function to get all users for sidebar
     const getUsers = async () =>{
         try {
-            const {data} = await axois.get("/api/messages/users");
+            const {data} = await axios.get("/api/messages/users");
             if (data.success){
                 setUsers(data.users)
                 setUnseenMessages(data.unseenMessages)
@@ -31,7 +34,7 @@ export const ChatProvider = ({children})=>{
     //function to get message for selected user
     const getMessages = async (userId)=>{
         try{
-            const {data} = await axois.get(`/api/messages/${userId}`);
+            const {data} = await axios.get(`/api/messages/${userId}`);
             if (data.success){
                 setMessages(data.messages)
             }
@@ -42,7 +45,7 @@ export const ChatProvider = ({children})=>{
     //function to send message to selected user
     const sendMessage = async (messageData)=>{
         try {
-            const {data} = await axois.post(`/api/messages/send/${selectedUser._id}`, messageData);
+            const {data} = await axios.post(`/api/messages/send/${selectedUser._id}`, messageData);
             if(data.success){
                 setMessages((prevMessages)=>[...prevMessages, data.newMessage])
             }else{
@@ -59,7 +62,7 @@ export const ChatProvider = ({children})=>{
                 if(selectedUser && newMessage.senderId === selectedUser._id){
                     newMessage.seen = true;
                     setMessages((prevMessages)=> [...prevMessages, newMessage]);
-                    axois.put(`/api/messages/mark/${newMessage._id}`);
+                    axios.put(`/api/messages/mark/${newMessage._id}`);
                 }else{
                     setUnseenMessages((prevUnseenMessages)=>({
                         ...prevUnseenMessages, [newMessage.senderId] :
@@ -84,7 +87,7 @@ export const ChatProvider = ({children})=>{
 
     }
     return (
-        <ChatContext.Provider value={{value}}>
+        <ChatContext.Provider value={value}>
             {children}
         </ChatContext.Provider>
     )
