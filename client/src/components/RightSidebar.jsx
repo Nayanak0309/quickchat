@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import  {useRef, useEffect} from 'react'
 import assets, { imagesDummyData } from '../assets/assets/assets'
 
 const RightSidebar = ({selectedUser}) => {
